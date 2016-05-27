@@ -56,10 +56,23 @@ class Value {
         this.from = from;
         this.to = to;
         
-        this.configure
+        this.configureTerms();
     }
     
+    configureTerms() {
+        
+        
+        
+        this.
+        
+        this.termFrom 
+    }
     
+    getValue() {
+        return {
+            
+        }    
+    }
     
 }
 
