@@ -1,0 +1,14 @@
+{
+  "name": "measures",
+  "version": "1.0.0",
+  "description": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "measures"
+  ],
+  "author": "sebadlf",
+  "license": "ISC"
+}
