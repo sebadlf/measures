@@ -13,7 +13,7 @@ const measures = [{
         calculation: {
             from: 'x*1000',
             to: 'x/1000'
-        }       
+        }
     }],
 }, {
     name: 'temperature',
@@ -25,13 +25,13 @@ const measures = [{
             to: 'x'
         }
     }, {
-        name: 'fahrenheit ',
+        name: 'fahrenheit',
         abbreviation: 'ºF',
         calculation: {
             from: '(x-32)/1.8',
             to: 'x*1.8+32'
-        }        
-    }],    
+        }
+    }],
 }]
 
 export default measures;

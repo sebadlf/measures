@@ -1,80 +1,106 @@
 import measures from './src/config';
 
-class Measures {
-    
-    constructor() {
-        
-    }
-    
-    convert (kind) {
-        return new From(kind);
-    }
-    
+class MeasuresBase {
+
+  formatPosibilities(currentMeasures) {
+    return currentMeasures.map((measure) => {
+        return {
+            name: measure.name,
+            abbreviation: measure.abbreviation
+        };
+    });
+  }
+
+  getMeasures() {
+    return this.kind ? this.kind.measures : measures;
+  }
+
+  getPossibilities() {
+    let result = this.getMeasures();
+    result = this.formatPosibilities(result);
+
+    return result;
+  }
+
+  getTerm(termName) {
+    let result = this.getMeasures();
+    result = result.find((measure) => measure.name === termName);
+
+    return result;
+  }
 }
 
-class From {
-    
+class Measures extends MeasuresBase {
+
+    convert (kindId) {
+      let kind = this.getTerm(kindId);
+      return new From(kind);
+    }
+
+}
+
+class Term extends MeasuresBase {
+
+}
+
+
+class From extends Term {
+
     constructor(kind) {
-        this.kind = kind;
-        this.measures = measures.map((measure) => {
-            return {
-                name: measure.name,
-                abbreviation: measure.abbreviation
-            }
-        })
+      super();
+      this.kind = kind;
     }
-    
-    from(measureFrom) {
-        return new To(this.kind, measureFrom)
+
+    from(measureFromId) {
+      let measureFrom = this.getTerm(measureFromId);
+      return new To(this.kind, measureFrom)
     }
-    
+
 }
 
-class To {
-    
-    constructor(kind, from) {
-        this.kind = kind;
-        this.filter = filter;
-        this.measures = measures.map((measure) => {
-            return {
-                name: measure.name,
-                abbreviation: measure.abbreviation
-            }
-        })
+class To extends Term {
+
+    constructor(kind, measureFrom) {
+      super();
+      this.kind = kind;
+      this.measureFrom = measureFrom;
     }
-    
-    to(measureTo) {
-        return new Value(this.kind, this.from, measureTo);
+
+    to(measureToId) {
+      let measureTo = this.getTerm(measureToId);
+      return new Value(this.kind, this.measureFrom, measureTo);
     }
-    
+
 }
 
 class Value {
-    
-    constructor(kind, from, to) {
+
+    constructor(kind, measureFrom, measureTo) {
         this.kind = kind;
-        this.from = from;
-        this.to = to;
-        
-        this.configureTerms();
+        this.measureFrom = measureFrom;
+        this.measureTo = measureTo;
     }
-    
-    configureTerms() {
-        
-        
-        
-        this.
-        
-        this.termFrom 
+
+    get(value) {
+      const termFrom = this.measureFrom.calculation.from;
+      const termTo = this.measureTo.calculation.to;
+
+      const ecuation = termTo.replace('x', termFrom.replace('x', value));
+
+      const result = eval(ecuation);
+
+      return result;
     }
-    
-    getValue() {
-        return {
-            
-        }    
-    }
-    
+
 }
 
+const measuresObj = new Measures();
 
+// let km = measuresObj.convert('distance').from('metres').to('kilometers').get(100);
+// let temp = measuresObj.convert('temperature').from('fahrenheit').to('centigrades').get(100);
+//
+//
+// console.log(km);
+// console.log(temp);
 
+export default measuresObj;
