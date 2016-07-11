@@ -5,6 +5,7 @@ class MeasuresBase {
   formatPosibilities(currentMeasures) {
     return currentMeasures.map((measure) => {
         return {
+            id: measure.id,
             name: measure.name,
             abbreviation: measure.abbreviation
         };
@@ -22,9 +23,17 @@ class MeasuresBase {
     return result;
   }
 
-  getTerm(termName) {
+  getPossibilityById(posibilityId) {
+    const posibilities = this.getPossibilities();
+
+    const posibility = posibilities.find((posibility) => posibility.id === posibilityId);
+
+    return posibility;
+  }
+
+  getTerm(id) {
     let result = this.getMeasures();
-    result = result.find((measure) => measure.name === termName);
+    result = result.find((measure) => measure.id === id);
 
     return result;
   }
@@ -40,6 +49,7 @@ class Measures extends MeasuresBase {
 }
 
 class Term extends MeasuresBase {
+
 
 }
 
