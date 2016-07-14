@@ -11,20 +11,44 @@ const measures = [{
             to: 'x'
         }
     }, {
-        id: 'meters',
-        name: 'Metres',
-        abbreviation: 'm',
+      id: 'centimeters',
+      name: 'Centimeters',
+      abbreviation: 'cm',
+      calculation: {
+          from: 'x/100',
+          to: 'x*100'
+      }
+    }, {
+      id: 'kilometers',
+      name: 'Kilometers',
+      abbreviation: 'km',
+      calculation: {
+          from: 'x*1000',
+          to: 'x/1000'
+      }
+    }, {
+        id: 'feet',
+        name: 'Feet',
+        abbreviation: 'ft',
         calculation: {
-            from: 'x',
-            to: 'x'
+            from: 'x / 3.2808',
+            to: 'x * 3.2808'
         }
     }, {
-        id: 'kilometers',
-        name: 'Kilometers',
-        abbreviation: 'km',
+        id: 'inches',
+        name: 'Inches',
+        abbreviation: 'in',
         calculation: {
-            from: 'x*1000',
-            to: 'x/1000'
+            from: 'x / 39.370',
+            to: 'x * 39.370'
+        }
+    }, {
+        id: 'miles',
+        name: 'Miles',
+        abbreviation: 'mi',
+        calculation: {
+            from: 'x*1609.344',
+            to: 'x/1609.344'
         }
     }],
 }, {
